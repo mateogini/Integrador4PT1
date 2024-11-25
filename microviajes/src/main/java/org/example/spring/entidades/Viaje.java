@@ -35,18 +35,17 @@ public class Viaje {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
 
-    // Relación con Monopatin como unidireccional desde Viaje para evitar ciclos
+    // relaciono con monopatin
     @ManyToOne
     @JoinColumn(name = "idMonopatin")
     private Monopatin monopatin;
 
     @OneToMany(mappedBy = "viaje")
     private List<Pausa> pausas = new ArrayList<>();
-    @ManyToOne
-    @JoinColumn(name = "tarifa_id")  // Establece la columna que va a asociar Viaje con Tarifa
-    private Tarifa tarifa;
+    @Column
+    private String tarifa_id;
 
-    public Viaje(long id_viaje, long id_cuenta, long id_usuario, long parada_inicio, long parada_fin, Date fechaHoraInicio, Date fechaHoraFin, double km_recorridos, Usuario usuario, Monopatin monopatin, Tarifa tarifa) {
+    public Viaje(long id_viaje, long id_cuenta, long id_usuario, long parada_inicio, long parada_fin, Date fechaHoraInicio, Date fechaHoraFin, double km_recorridos, Usuario usuario, Monopatin monopatin, String tarifa) {
         this.id_viaje = id_viaje;
         this.id_cuenta = id_cuenta;
         this.id_usuario = id_usuario;
@@ -57,7 +56,7 @@ public class Viaje {
         this.km_recorridos = km_recorridos;
         this.usuario = usuario;
         this.monopatin = monopatin;
-        this.tarifa = tarifa;
+        this.tarifa_id = tarifa;
         this.pausas = new ArrayList<>();
     }
 }

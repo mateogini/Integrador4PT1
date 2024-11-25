@@ -1,25 +1,21 @@
 package org.example.spring.entidades;
 
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Entity
 @Data
 @NoArgsConstructor
-
+@Document(collection = "tarifas")
 public class Tarifa {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
+    private String id;
     private double monto;
-    @Column
     private double monto_extra;
-    @Column
     private Date fecha;
 
 

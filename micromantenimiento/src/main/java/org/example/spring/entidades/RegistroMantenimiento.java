@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 
+
 public class RegistroMantenimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

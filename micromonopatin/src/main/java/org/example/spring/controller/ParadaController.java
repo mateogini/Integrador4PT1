@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "paradas")
+@RequestMapping(value = "/api/microMonopatin/paradas")
 public class ParadaController {
 
     @Autowired

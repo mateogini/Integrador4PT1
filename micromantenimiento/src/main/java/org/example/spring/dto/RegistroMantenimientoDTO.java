@@ -20,6 +20,6 @@ public class RegistroMantenimientoDTO {
         this.fechaInicio = rm.getFechaInicio();
         this.fechaFin = rm.getFechaFin();
         this.descripcion = rm.getDescripcion();
-        this.monopatin = getMonopatin();
+        this.monopatin = rm.getMonopatin();
     }
 }

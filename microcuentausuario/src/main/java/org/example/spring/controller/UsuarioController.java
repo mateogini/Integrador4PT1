@@ -1,5 +1,6 @@
 package org.example.spring.controller;
 
+
 import org.example.spring.dto.UsuarioDTO;
 import org.example.spring.service.UsuarioService;
 import org.example.spring.entidades.Usuario;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "usuarios")
+@RequestMapping("/api/microcuentaUsuarios/users")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+
 
     // Obtener todos los usuarios
     @GetMapping("")
@@ -29,7 +32,6 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    // Guardar un nuevo usuario
     @PostMapping("")
     public ResponseEntity<UsuarioDTO> guardarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         UsuarioDTO usuarioGuardado = usuarioService.guardarUsuario(usuarioDTO);

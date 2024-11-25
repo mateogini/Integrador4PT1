@@ -21,7 +21,7 @@ public class ViajeService {
     public ViajeDTO guardarViaje(ViajeDTO v) {
         var nuevoViaje = new Viaje(v.getId_viaje(), v.getId_cuenta(), v.getId_usuario(), v.getParada_inicio(),
                 v.getParada_fin(), v.getFechaHoraInicio(), v.getFechaHoraFin(), v.getKm_recorridos(),
-                v.getUsuario(), v.getMonopatin(), v.getTarifa());
+                v.getUsuario(), v.getMonopatin(), v.getTarifa_id());
         nuevoViaje = viajeRepository.save(nuevoViaje);
         return new ViajeDTO(nuevoViaje);
     }
@@ -45,7 +45,7 @@ public class ViajeService {
         viajeExistente.setKm_recorridos(v.getKm_recorridos());
         viajeExistente.setUsuario(v.getUsuario());
         viajeExistente.setMonopatin(v.getMonopatin());
-        viajeExistente.setTarifa(v.getTarifa());
+        viajeExistente.setTarifa_id(v.getTarifa_id());
 
         viajeRepository.save(viajeExistente);
         return new ViajeDTO(viajeExistente);

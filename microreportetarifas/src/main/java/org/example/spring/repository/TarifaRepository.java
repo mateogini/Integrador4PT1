@@ -1,21 +1,25 @@
 package org.example.spring.repository;
 
 import org.example.spring.entidades.Tarifa;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.Aggregation;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 
 @Repository
-public interface TarifaRepository extends JpaRepository<Tarifa, Long> {
-    @Query("SELECT SUM(f.monto + f.monto_extra) FROM Tarifa f " +
-            "WHERE YEAR(f.fecha) = :anio " +
-            "AND MONTH(f.fecha) BETWEEN :mesInicio AND :mesFin")
-    public Double getTotalFacturadoEnRango(@Param("anio") int anio,
-                                           @Param("mesInicio") int mesInicio,
-                                           @Param("mesFin") int mesFin);
+public interface TarifaRepository extends MongoRepository<Tarifa, Long> {
+    @Aggregation(pipeline = {
+            "{ $match: { $expr: { $and: [ " +
+                    "   { $eq: [{ $year: '$fecha' }, ?0] }, " +  // Filtra por el año especificado
+                    "   { $gte: [{ $month: '$fecha' }, ?1] }, " + // Filtra por el mes de inicio
+                    "   { $lte: [{ $month: '$fecha' }, ?2] } " +   // Filtra por el mes de fin
+                    "] } } }",
+            "{ $group: { _id: null, totalFacturado: { $sum: { $add: ['$monto', '$monto_extra'] } } } }"
+    })
+    double getTotalFacturadoEnRango(int anio, int mesInicio, int mesFin);
+
+
 
 
     Tarifa findFirstByFechaLessThanEqualOrderByFechaDesc(Date fecha);

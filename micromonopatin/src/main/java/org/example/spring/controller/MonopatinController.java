@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "monopatines")
+@RequestMapping(value = "/api/microMonopatin/monopatines")
 public class MonopatinController {
 
     @Autowired

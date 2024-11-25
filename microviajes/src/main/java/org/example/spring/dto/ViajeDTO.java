@@ -26,7 +26,7 @@ public class ViajeDTO {
     private double km_recorridos;
     private Usuario usuario;
     private Monopatin monopatin;
-    private Tarifa tarifa;
+    private String tarifa_id;
 
 
 
@@ -41,6 +41,6 @@ public class ViajeDTO {
     this.km_recorridos = v.getKm_recorridos();
     this.usuario = v.getUsuario();
     this.monopatin= v.getMonopatin();
-    this.tarifa = v.getTarifa();
+    this.tarifa_id = v.getTarifa_id();
     }
 }

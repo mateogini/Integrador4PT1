@@ -17,8 +17,8 @@ public class LoadDataBase {
     @Bean
     CommandLineRunner initDataBase(TarifaRepository tarifaRepository){
         return args -> {
-        Tarifa t = new Tarifa(200.1, 20, new Date(2024, 12, 10));
-        tarifaRepository.save(t);
+            Tarifa t1 = new Tarifa(200.1, 20.5, new Date());
+            tarifaRepository.save(t1);
         };
     }
 }

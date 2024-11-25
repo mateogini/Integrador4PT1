@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "tarifas")
+@RequestMapping(value = "/api/microTarifas/tarifas")
 public class TarifaController {
 
     @Autowired
